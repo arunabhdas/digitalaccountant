@@ -10,6 +10,8 @@
 		4B9FE6D7234D2D05006A26BB /* TouchFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9FE6CD234D2D05006A26BB /* TouchFramework.framework */; };
 		4B9FE6DC234D2D05006A26BB /* TouchFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FE6DB234D2D05006A26BB /* TouchFrameworkTests.swift */; };
 		4B9FE6DE234D2D05006A26BB /* TouchFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B9FE6D0234D2D05006A26BB /* TouchFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4B9FE6E8234D30A5006A26BB /* TouchFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FE6E7234D30A5006A26BB /* TouchFramework.swift */; };
+		4B9FE6E9234D30AE006A26BB /* TouchFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FE6E7234D30A5006A26BB /* TouchFramework.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,7 @@
 		4B9FE6D6234D2D05006A26BB /* TouchFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TouchFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B9FE6DB234D2D05006A26BB /* TouchFrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchFrameworkTests.swift; sourceTree = "<group>"; };
 		4B9FE6DD234D2D05006A26BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B9FE6E7234D30A5006A26BB /* TouchFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchFramework.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				4B9FE6D0234D2D05006A26BB /* TouchFramework.h */,
+				4B9FE6E7234D30A5006A26BB /* TouchFramework.swift */,
 				4B9FE6D1234D2D05006A26BB /* Info.plist */,
 			);
 			path = TouchFramework;
@@ -148,6 +152,7 @@
 				TargetAttributes = {
 					4B9FE6CC234D2D05006A26BB = {
 						CreatedOnToolsVersion = 11.1;
+						LastSwiftMigration = 1110;
 					};
 					4B9FE6D5234D2D05006A26BB = {
 						CreatedOnToolsVersion = 11.1;
@@ -195,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B9FE6E8234D30A5006A26BB /* TouchFramework.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B9FE6E9234D30AE006A26BB /* TouchFramework.swift in Sources */,
 				4B9FE6DC234D2D05006A26BB /* TouchFrameworkTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,6 +347,7 @@
 		4B9FE6E2234D2D05006A26BB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = G7Y435RZV6;
@@ -356,6 +364,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.arunabhdas.TouchFramework.TouchFramework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,6 +373,7 @@
 		4B9FE6E3234D2D05006A26BB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = G7Y435RZV6;
@@ -388,6 +398,7 @@
 		4B9FE6E5234D2D05006A26BB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G7Y435RZV6;
 				INFOPLIST_FILE = TouchFrameworkTests/Info.plist;
@@ -406,6 +417,7 @@
 		4B9FE6E6234D2D05006A26BB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G7Y435RZV6;
 				INFOPLIST_FILE = TouchFrameworkTests/Info.plist;
