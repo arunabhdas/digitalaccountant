@@ -27,7 +27,7 @@ public class TouchFrameworkView: UIView {
     let nibName = "TouchFrameworkView"
     var contentView: UIView!
 
-    // MARK: Set Up View
+    // MARK: Init
     public override init(frame: CGRect) {
      // For use in code
       super.init(frame: frame)
@@ -39,6 +39,8 @@ public class TouchFrameworkView: UIView {
        super.init(coder: aDecoder)
       setUpView()
     }
+    
+    // MARK: Set Up View
     
     private func setupView() {
         let bundle = Bundle(for: type(of: self))
@@ -52,4 +54,19 @@ public class TouchFrameworkView: UIView {
         headlineLabel.text = ""
         subheadLabel.text = ""
     }
+    
+    // MARK: Setters
+    
+    public func set(image: UIImage) {
+        self.statusImage.image = image
+    }
+    
+    public func set(headline text: String) {
+        self.headlineLabel.text = text
+    }
+    
+    public func set(subheading text: String) {
+        self.subheadLabel.text = text
+    }
+    
 }
