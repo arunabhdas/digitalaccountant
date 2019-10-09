@@ -8,11 +8,13 @@
 
 import Foundation
 import UIKit
+import TouchFramework
 
 class DiscountViewController: UITableViewController {
     let cellIdentifier = "Cell"
     
     let viewModel = DiscountViewModel()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +52,7 @@ extension DiscountViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.toggleDiscount(at: indexPath)
+
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }

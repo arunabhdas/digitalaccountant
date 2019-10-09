@@ -10,9 +10,15 @@ import UIKit
 
 open class TouchFramework: NSObject {
     var subtotal: Double = 0.0
+    var amountDiscount: Double = 0.0
+    var percentageDiscount: Double = 0.0
+    var totalDiscount: Double = 10.0
     
-    public override init() {
-       super.init()
+    
+    public static let sharedInstance = TouchFramework()
+    
+    private override init() {
+        super.init()
     }
     
     
@@ -30,18 +36,26 @@ open class TouchFramework: NSObject {
         self.subtotal = subtotal - price
         return self.subtotal
     }
+    
+    public func calculateTotalDiscount() -> Double {
+        return totalDiscount
+    }
+    
+    public func set(amountDiscount amount: Double) {
+        self.amountDiscount = amount
+    }
 }
 
 public extension String {
-    public func toFloat() -> Float? {
+    func toFloat() -> Float? {
         return Float.init(self)
     }
 
-    public func toDouble() -> Double? {
+    func toDouble() -> Double? {
         return Double.init(self)
     }
     
-    public func removeFormatAmount() -> Double {
+    func removeFormatAmount() -> Double {
         let formatter = NumberFormatter()
 
         formatter.locale = Locale(identifier: "en_US")
@@ -57,7 +71,7 @@ public extension String {
 
 
 public extension Double {
-    public func formatAmount(number:NSNumber) -> String {
+    func formatAmount(number:NSNumber) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         return formatter.string(from: number)!
