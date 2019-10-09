@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B33DE42234E6D9500C56733 /* TouchFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB76D60234E3CD600AFC057 /* TouchFramework.framework */; };
+		4B33DE43234E6D9500C56733 /* TouchFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB76D60234E3CD600AFC057 /* TouchFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6AD7674C2277694600FF4219 /* TaxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7674B2277694600FF4219 /* TaxViewController.swift */; };
 		6AD7675A227788FB00FF4219 /* DiscountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD76759227788FB00FF4219 /* DiscountViewController.swift */; };
 		6AEC0FF1226F8718005F8B6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC0FF0226F8718005F8B6B /* AppDelegate.swift */; };
@@ -48,6 +50,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4B33DE44234E6D9500C56733 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4B33DE43234E6D9500C56733 /* TouchFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4BB76D5A234E3CD600AFC057 /* TouchFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TouchFramework.xcodeproj; path = ../touchframework/TouchFramework/TouchFramework.xcodeproj; sourceTree = "<group>"; };
 		6AD7674B2277694600FF4219 /* TaxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B33DE42234E6D9500C56733 /* TouchFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +188,7 @@
 				6AEC0FEA226F8717005F8B6B /* Sources */,
 				6AEC0FEB226F8717005F8B6B /* Frameworks */,
 				6AEC0FEC226F8717005F8B6B /* Resources */,
+				4B33DE44234E6D9500C56733 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -491,7 +509,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R8HVB85AU9;
+				DEVELOPMENT_TEAM = G7Y435RZV6;
 				INFOPLIST_FILE = POS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -509,7 +527,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R8HVB85AU9;
+				DEVELOPMENT_TEAM = G7Y435RZV6;
 				INFOPLIST_FILE = POS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

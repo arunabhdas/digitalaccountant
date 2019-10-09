@@ -31,13 +31,13 @@ public class TouchFrameworkView: UIView {
     public override init(frame: CGRect) {
      // For use in code
       super.init(frame: frame)
-      setUpView()
+      setupView()
     }
 
     public required init?(coder aDecoder: NSCoder) {
        // For use in Interface Builder
        super.init(coder: aDecoder)
-      setUpView()
+      setupView()
     }
     
     // MARK: Set Up View

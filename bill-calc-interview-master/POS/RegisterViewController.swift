@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class RegisterViewController: UIViewController {
     let cellIdentifier = "Cell"
     
@@ -37,9 +38,16 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func showDiscounts() {
+        /*
         let vc = UINavigationController(rootViewController: DiscountViewController(style: .grouped))
         vc.modalPresentationStyle = .formSheet
         present(vc, animated: true, completion: nil)
+        */
+        
+    }
+    
+    func presentModalStatusView() {
+        
     }
 }
 
