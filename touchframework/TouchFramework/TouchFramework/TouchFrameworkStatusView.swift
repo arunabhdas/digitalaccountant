@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class TouchFrameworkView: UIView {
+public class TouchFrameworkStatusView: UIView {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -24,7 +24,7 @@ public class TouchFrameworkView: UIView {
     @IBOutlet private weak var subheadLabel: UILabel!
     
     
-    let nibName = "TouchFrameworkView"
+    let nibName = "TouchFrameworkStatusView"
     var contentView: UIView!
 
     // MARK: Init

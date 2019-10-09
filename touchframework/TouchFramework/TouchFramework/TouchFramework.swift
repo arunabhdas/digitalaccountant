@@ -10,7 +10,7 @@ import UIKit
 
 open class TouchFramework: NSObject {
     
-    open class func logToConsole(_ msg: String) {
+    open class func logToConsole(message msg: String) {
         print(msg);
     }
 

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import TouchFramework
 
 class RegisterViewController: UIViewController {
     let cellIdentifier = "Cell"
@@ -38,15 +38,17 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func showDiscounts() {
-        /*
+        performLoggingOperation()
         let vc = UINavigationController(rootViewController: DiscountViewController(style: .grouped))
         vc.modalPresentationStyle = .formSheet
         present(vc, animated: true, completion: nil)
-        */
+        
+        
         
     }
     
-    func presentModalStatusView() {
+    func performLoggingOperation() {
+        TouchFramework.logToConsole(message: "Test")
         
     }
 }
