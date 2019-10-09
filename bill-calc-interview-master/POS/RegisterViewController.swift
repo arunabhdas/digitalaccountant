@@ -21,6 +21,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     
     let viewModel = RegisterViewModel()
+    let touchFramework = TouchFramework()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,7 +111,7 @@ extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
             
             if let amount = viewModel.orderItemPrice(at: indexPath)?.removeFormatAmount() {
                 let amountDouble = Double(amount)
-                let subtotalAmountDouble = TouchFramework.calculateSubtotal(amount: amountDouble ?? 0.0)
+                let subtotalAmountDouble = touchFramework.calculateSubtotal(amount: amountDouble)
                 self.subtotalLabel.text = viewModel.formatter.string(from: NSNumber(value: subtotalAmountDouble))
                 
             }

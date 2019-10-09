@@ -9,16 +9,21 @@
 import UIKit
 
 open class TouchFramework: NSObject {
+    var subtotal: Double = 0.0
+    
+    public override init() {
+       super.init()
+    }
+    
     
     open class func logToConsole(message msg: String) {
         print(msg);
     }
 
     
-    open class func calculateSubtotal(amount price: Double) -> Double {
-        var subtotal: Double = 0.0
-        subtotal = subtotal + price
-        return subtotal
+    public func calculateSubtotal(amount price: Double) -> Double {
+        self.subtotal = subtotal + price
+        return self.subtotal
     }
 }
 
