@@ -21,8 +21,13 @@ open class TouchFramework: NSObject {
     }
 
     
-    public func calculateSubtotal(amount price: Double) -> Double {
+    public func addToSubtotal(amount price: Double) -> Double {
         self.subtotal = subtotal + price
+        return self.subtotal
+    }
+    
+    public func deductFromSubtotal(amount price: Double) -> Double {
+        self.subtotal = subtotal - price
         return self.subtotal
     }
 }

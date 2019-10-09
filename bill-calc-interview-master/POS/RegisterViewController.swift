@@ -50,7 +50,6 @@ class RegisterViewController: UIViewController {
     
     func performLoggingOperation() {
         TouchFramework.logToConsole(message: "Test")
-        self.subtotalLabel.text = "10.00"
     }
 }
 
@@ -109,9 +108,9 @@ extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
             // calculate bill totals
             
             
-            if let amount = viewModel.orderItemPrice(at: indexPath)?.removeFormatAmount() {
+            if let amount = viewModel.menuItemPrice(at: indexPath)?.removeFormatAmount() {
                 let amountDouble = Double(amount)
-                let subtotalAmountDouble = touchFramework.calculateSubtotal(amount: amountDouble)
+                let subtotalAmountDouble = touchFramework.addToSubtotal(amount: amountDouble)
                 self.subtotalLabel.text = viewModel.formatter.string(from: NSNumber(value: subtotalAmountDouble))
                 
             }
@@ -139,6 +138,12 @@ extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
             viewModel.removeItemFromOrder(at: indexPath)
             orderTableView.deleteRows(at: [indexPath], with: .automatic)
             // calculate bill totals
+            if let amount = viewModel.menuItemPrice(at: indexPath)?.removeFormatAmount() {
+                let amountDouble = Double(amount)
+                let subtotalAmountDouble = touchFramework.deductFromSubtotal(amount: amountDouble)
+                self.subtotalLabel.text = viewModel.formatter.string(from: NSNumber(value: subtotalAmountDouble))
+                
+            }
         }
     }
 }
