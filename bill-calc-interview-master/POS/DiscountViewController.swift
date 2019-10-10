@@ -10,18 +10,21 @@ import Foundation
 import UIKit
 import TouchFramework
 
+
 class DiscountViewController: UITableViewController {
+    
     let cellIdentifier = "Cell"
     
     let viewModel = DiscountViewModel()
     let touchFramework = TouchFramework.sharedInstance
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Discounts"
         let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
         navigationItem.rightBarButtonItem = button
+        
     }
     
     @objc func done() {

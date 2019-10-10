@@ -14,6 +14,16 @@ open class TouchFramework: NSObject {
     var percentageDiscount: Double = 0.0
     var totalDiscount: Double = 0.0
     
+    /*
+    var subtotal: Double = 0.0 {
+        willSet(newValue) {
+            print("\(self.subtotal) is going to be renamed as \(newValue)")
+        }
+        didSet(oldValue) {
+            print("\(oldValue) has been renamed as \(self.subtotal)")
+        }
+    }
+    */
     
     public static let sharedInstance = TouchFramework()
     
@@ -38,13 +48,20 @@ open class TouchFramework: NSObject {
     }
     
     public func calculateTotalDiscount() -> Double {
-        return totalDiscount
+        self.totalDiscount = self.percentageDiscount * self.subtotal + self.amountDiscount
+        print ("Total totalDiscount : \(self.totalDiscount) ")
+        return self.totalDiscount
+    }
+    
+    public func getAmountDiscount() -> Double {
+        return self.amountDiscount
     }
     
     public func set(amountDiscount amount: Double) {
         self.amountDiscount = amount
-        print ("Total amountDiscount : \(self.amountDiscount) ")
+        
     }
+    
     
     public func addToPercentageDiscount(percentageDiscount percentage: Double) {
         self.percentageDiscount = self.percentageDiscount + percentage

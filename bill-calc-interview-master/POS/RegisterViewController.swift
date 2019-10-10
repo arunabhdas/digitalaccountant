@@ -23,6 +23,14 @@ class RegisterViewController: UIViewController {
     let viewModel = RegisterViewModel()
     let touchFramework = TouchFramework.sharedInstance
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("DiscountVC was dismissed")
+        
+        let totalAmountDiscount = touchFramework.calculateTotalDiscount()
+        print ("Total totalDiscount : \(touchFramework.getAmountDiscount()) ")
+        self.discountsLabel.text = viewModel.formatter.string(from: NSNumber(value: totalAmountDiscount))
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,14 +42,16 @@ class RegisterViewController: UIViewController {
     
     @IBAction func showTaxes() {
         let vc = UINavigationController(rootViewController: TaxViewController(style: .grouped))
-        vc.modalPresentationStyle = .formSheet
+        // vc.modalPresentationStyle = .formSheet
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
     
     @IBAction func showDiscounts() {
         performLoggingOperation()
         let vc = UINavigationController(rootViewController: DiscountViewController(style: .grouped))
-        vc.modalPresentationStyle = .formSheet
+        // vc.modalPresentationStyle = .formSheet
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
         
         
@@ -50,6 +60,12 @@ class RegisterViewController: UIViewController {
     
     func performLoggingOperation() {
         TouchFramework.logToConsole(message: "Test")
+    }
+    
+    @IBAction func unwindToViewController(segue: UIStoryboardSegue) {
+        let discountVC = segue.source as? DiscountViewController
+        print ("DiscountViewController")
+    
     }
 }
 
@@ -113,8 +129,10 @@ extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
                 let subtotalAmountDouble = touchFramework.addToSubtotal(amount: amountDouble)
                 self.subtotalLabel.text = viewModel.formatter.string(from: NSNumber(value: subtotalAmountDouble))
                 
-                let totalAmountDiscount = touchFramework.calculateTotalDiscount()
-                self.discountsLabel.text = viewModel.formatter.string(from: NSNumber(value: totalAmountDiscount))
+                
+                
+                
+
                 
             }
             
@@ -148,6 +166,10 @@ extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
                 
             }
         }
+    }
+    
+    func discountAddedAction() {
+        print ("Discount was added")
     }
 }
 
