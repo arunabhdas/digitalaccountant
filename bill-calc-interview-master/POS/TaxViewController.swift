@@ -18,6 +18,7 @@ class TaxViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        touchFramework.set(percentageTax: 0.0)
         title = "Taxes"
         let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
         navigationItem.rightBarButtonItem = button
@@ -46,6 +47,7 @@ extension TaxViewController {
         
         cell.textLabel?.text = viewModel.labelForTax(at: indexPath)
         cell.accessoryType = viewModel.accessoryType(at: indexPath)
+        
         let tax = taxes[indexPath.row]
         if tax.isEnabled {
             if !(tax.label.contains("Alcohol")) {

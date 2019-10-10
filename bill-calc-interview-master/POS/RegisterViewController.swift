@@ -31,6 +31,10 @@ class RegisterViewController: UIViewController {
         self.discountsLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getAmountDiscount()))
         
         print ("PercentageTax : \(touchFramework.getPercentageTax()) ")
+        
+        self.taxLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getNonAlcoholTaxAmount()))
+        
+        self.totalLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getTotalAfterDiscountAndTaxes()))
     }
     
     override func viewDidLoad() {
@@ -131,12 +135,8 @@ extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
                 let subtotalAmountDouble = touchFramework.addToSubtotal(amount: amountDouble)
                 self.subtotalLabel.text = viewModel.formatter.string(from: NSNumber(value: subtotalAmountDouble))
                 
-                
-                
-                
-
-                
             }
+
             
             
         
