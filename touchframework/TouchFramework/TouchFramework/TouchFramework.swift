@@ -10,6 +10,7 @@ import UIKit
 
 open class TouchFramework: NSObject {
     var subtotal: Double = 0.0
+    var subtotalAfterDiscount: Double = 0.0
     var amountDiscount: Double = 0.0
     var percentageDiscount: Double = 0.0
     var totalDiscount: Double = 0.0
@@ -50,14 +51,20 @@ open class TouchFramework: NSObject {
         return self.subtotal
     }
     
-    public func calculateTotalDiscount() -> Double {
+    public func calculateAll() {
         self.totalDiscount = self.percentageDiscount * self.subtotal + self.amountDiscount
+        self.subtotalAfterDiscount = self.subtotal - self.totalDiscount
         print ("Total totalDiscount : \(self.totalDiscount) ")
-        return self.totalDiscount
+        print ("----Subtotal After Discount : \(self.subtotalAfterDiscount) ")
+        // return self.totalDiscount
     }
     
     public func getAmountDiscount() -> Double {
         return self.amountDiscount
+    }
+    
+    public func getPercentageTax() -> Double {
+        return self.percentageTax
     }
     
     public func set(amountDiscount amount: Double) {
@@ -83,6 +90,12 @@ open class TouchFramework: NSObject {
     
     public func addToPercentageTax(percentageTax percentage: Double) {
         self.percentageTax = self.percentageTax + percentage
+        self.percentageTax = self.percentageTax.rounded(toPlaces: 2)
+        print ("PercentageTax : \(self.percentageTax) ")
+    }
+    
+    public func deductFromPercentageTax(percentageTax percentage: Double) {
+        self.percentageTax = self.percentageTax - percentage
         self.percentageTax = self.percentageTax.rounded(toPlaces: 2)
         print ("PercentageTax : \(self.percentageTax) ")
     }

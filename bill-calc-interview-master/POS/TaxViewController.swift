@@ -8,11 +8,13 @@
 
 import Foundation
 import UIKit
+import TouchFramework
 
 class TaxViewController: UITableViewController {
     let cellIdentifier = "Cell"
     
     let viewModel = TaxViewModel()
+    let touchFramework = TouchFramework.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +55,10 @@ extension TaxViewController {
         let tax = taxes[indexPath.row]
         if tax.isEnabled {
             print ("\(tax) was enabled")
+            touchFramework.addToPercentageTax(percentageTax: tax.amount)
+        } else {
+            print ("\(tax) was disabled")
+            touchFramework.deductFromPercentageTax(percentageTax: tax.amount)
         }
             
         tableView.reloadRows(at: [indexPath], with: .automatic)

@@ -26,9 +26,11 @@ class RegisterViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         print("DiscountVC was dismissed")
         
-        let totalAmountDiscount = touchFramework.calculateTotalDiscount()
+        touchFramework.calculateAll()
         print ("Total totalDiscount : \(touchFramework.getAmountDiscount()) ")
-        self.discountsLabel.text = viewModel.formatter.string(from: NSNumber(value: totalAmountDiscount))
+        self.discountsLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getAmountDiscount()))
+        
+        print ("PercentageTax : \(touchFramework.getPercentageTax()) ")
     }
     
     override func viewDidLoad() {
