@@ -66,20 +66,26 @@ open class TouchFramework: NSObject {
         
     }
     
-    public func getAmountDiscount() -> Double {
-        return self.amountDiscount
-    }
-    
-    public func getPercentageTax() -> Double {
-        return self.percentageTax
-    }
-    
+
     public func set(amountDiscount amount: Double) {
         self.amountDiscount = amount
     }
     
     public func set(percentageTax tax: Double) {
         self.percentageTax = tax
+    }
+    
+    public func getSubtotal() -> Double {
+        return self.subtotal
+    }
+    
+    
+    public func getAmountDiscount() -> Double {
+        return self.amountDiscount
+    }
+    
+    public func getPercentageTax() -> Double {
+        return self.percentageTax
     }
     
     

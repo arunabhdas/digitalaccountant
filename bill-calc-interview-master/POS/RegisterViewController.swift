@@ -25,16 +25,7 @@ class RegisterViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         print("DiscountVC was dismissed")
-        
-        touchFramework.calculateAll()
-        print ("Total totalDiscount : \(touchFramework.getAmountDiscount()) ")
-        self.discountsLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getAmountDiscount()))
-        
-        print ("PercentageTax : \(touchFramework.getPercentageTax()) ")
-        
-        self.taxLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getNonAlcoholTaxAmount()))
-        
-        self.totalLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getTotalAfterDiscountAndTaxes()))
+        recalculateAndDisplay()
     }
     
     override func viewDidLoad() {
@@ -45,6 +36,7 @@ class RegisterViewController: UIViewController {
         menuTableView.delegate = self
         orderTableView.delegate = self
     }
+    
     
     @IBAction func showTaxes() {
         let vc = UINavigationController(rootViewController: TaxViewController(style: .grouped))
@@ -62,6 +54,19 @@ class RegisterViewController: UIViewController {
         
         
         
+    }
+    
+    func recalculateAndDisplay() {
+        self.subtotalLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getSubtotal()))
+        touchFramework.calculateAll()
+        print ("Total totalDiscount : \(touchFramework.getAmountDiscount()) ")
+        self.discountsLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getAmountDiscount()))
+        
+        print ("PercentageTax : \(touchFramework.getPercentageTax()) ")
+        
+        self.taxLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getNonAlcoholTaxAmount()))
+        
+        self.totalLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getTotalAfterDiscountAndTaxes()))
     }
     
     func performLoggingOperation() {
@@ -133,9 +138,9 @@ extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
             if let amount = viewModel.menuItemPrice(at: indexPath)?.removeFormatAmount() {
                 let amountDouble = Double(amount)
                 let subtotalAmountDouble = touchFramework.addToSubtotal(amount: amountDouble)
-                self.subtotalLabel.text = viewModel.formatter.string(from: NSNumber(value: subtotalAmountDouble))
                 
             }
+            recalculateAndDisplay()
 
             
             
