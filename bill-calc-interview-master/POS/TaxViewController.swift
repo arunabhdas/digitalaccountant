@@ -46,6 +46,12 @@ extension TaxViewController {
         
         cell.textLabel?.text = viewModel.labelForTax(at: indexPath)
         cell.accessoryType = viewModel.accessoryType(at: indexPath)
+        let tax = taxes[indexPath.row]
+        if tax.isEnabled {
+            if !(tax.label.contains("Alcohol")) {
+                touchFramework.addToPercentageTax(percentageTax: tax.amount)
+            }
+        }
         
         return cell
     }
@@ -54,11 +60,15 @@ extension TaxViewController {
         viewModel.toggleTax(at: indexPath)
         let tax = taxes[indexPath.row]
         if tax.isEnabled {
-            print ("\(tax) was enabled")
-            touchFramework.addToPercentageTax(percentageTax: tax.amount)
+            if !(tax.label.contains("Alcohol")) {
+                print ("\(tax) was enabled")
+                touchFramework.addToPercentageTax(percentageTax: tax.amount)
+            }
         } else {
-            print ("\(tax) was disabled")
-            touchFramework.deductFromPercentageTax(percentageTax: tax.amount)
+            if !(tax.label.contains("Alcohol")) {
+                print ("\(tax) was disabled")
+                touchFramework.deductFromPercentageTax(percentageTax: tax.amount)
+            }
         }
             
         tableView.reloadRows(at: [indexPath], with: .automatic)
