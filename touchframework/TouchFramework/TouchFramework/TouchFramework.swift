@@ -14,6 +14,9 @@ open class TouchFramework: NSObject {
     var percentageDiscount: Double = 0.0
     var totalDiscount: Double = 0.0
     
+    var totalPercentageTax: Double = 0.0
+    var percentageTax: Double = 0.0
+    
     /*
     var subtotal: Double = 0.0 {
         willSet(newValue) {
@@ -63,6 +66,8 @@ open class TouchFramework: NSObject {
     }
     
     
+    
+    
     public func addToPercentageDiscount(percentageDiscount percentage: Double) {
         self.percentageDiscount = self.percentageDiscount + percentage
         self.percentageDiscount = self.percentageDiscount.rounded(toPlaces: 2)
@@ -75,6 +80,13 @@ open class TouchFramework: NSObject {
         self.percentageDiscount = self.percentageDiscount.rounded(toPlaces: 2)
         print ("Total percentageDiscount : \(self.percentageDiscount) ")
     }
+    
+    public func addToPercentageTax(percentageTax percentage: Double) {
+        self.percentageTax = self.percentageTax + percentage
+        self.percentageTax = self.percentageTax.rounded(toPlaces: 2)
+        print ("PercentageTax : \(self.percentageTax) ")
+    }
+    
 }
 
 public extension String {

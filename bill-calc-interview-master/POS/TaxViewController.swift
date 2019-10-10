@@ -50,6 +50,11 @@ extension TaxViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.toggleTax(at: indexPath)
+        let tax = taxes[indexPath.row]
+        if tax.isEnabled {
+            print ("\(tax) was enabled")
+        }
+            
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
