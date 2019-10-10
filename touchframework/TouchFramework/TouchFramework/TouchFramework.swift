@@ -12,7 +12,7 @@ open class TouchFramework: NSObject {
     var subtotal: Double = 0.0
     var amountDiscount: Double = 0.0
     var percentageDiscount: Double = 0.0
-    var totalDiscount: Double = 10.0
+    var totalDiscount: Double = 0.0
     
     
     public static let sharedInstance = TouchFramework()
@@ -43,6 +43,20 @@ open class TouchFramework: NSObject {
     
     public func set(amountDiscount amount: Double) {
         self.amountDiscount = amount
+        print ("Total amountDiscount : \(self.amountDiscount) ")
+    }
+    
+    public func addToPercentageDiscount(percentageDiscount percentage: Double) {
+        self.percentageDiscount = self.percentageDiscount + percentage
+        self.percentageDiscount = self.percentageDiscount.rounded(toPlaces: 2)
+        print ("Total percentageDiscount : \(self.percentageDiscount) ")
+
+    }
+    
+    public func deductFromPercentageDiscount(percentageDiscount percentage: Double) {
+        self.percentageDiscount = self.percentageDiscount - percentage
+        self.percentageDiscount = self.percentageDiscount.rounded(toPlaces: 2)
+        print ("Total percentageDiscount : \(self.percentageDiscount) ")
     }
 }
 
@@ -75,5 +89,11 @@ public extension Double {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         return formatter.string(from: number)!
+    }
+    
+    // Rounds the double to decimal places value
+    func rounded(toPlaces places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
     }
 }

@@ -14,6 +14,7 @@ class DiscountViewController: UITableViewController {
     let cellIdentifier = "Cell"
     
     let viewModel = DiscountViewModel()
+    let touchFramework = TouchFramework.sharedInstance
     
     
     override func viewDidLoad() {
@@ -52,7 +53,24 @@ extension DiscountViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.toggleDiscount(at: indexPath)
-
+        
+        let discount = discounts[indexPath.row]
+        if discount.isEnabled {
+            print ("\(discount) was enabled")
+            if (discount.label.contains("$")) {
+                touchFramework.set(amountDiscount: discount.amount)
+            } else {
+                touchFramework.addToPercentageDiscount(percentageDiscount: discount.amount.rounded(toPlaces: 2))
+            }
+            
+        } else {
+            if (discount.label.contains("$")) {
+                touchFramework.set(amountDiscount: 0.0)
+            } else {
+                touchFramework.deductFromPercentageDiscount(percentageDiscount: discount.amount.rounded(toPlaces: 2))
+            }
+        }
+        
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
