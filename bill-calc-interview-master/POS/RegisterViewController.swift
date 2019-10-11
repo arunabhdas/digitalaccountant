@@ -65,7 +65,9 @@ class RegisterViewController: UIViewController {
         
         // TODO-FIXME print ("PercentageTax : \(touchFramework.getPercentageTax()) ")
         
-        self.taxLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getNonAlcoholTaxAmount()))
+        // TODO-FIXME self.taxLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getNonAlcoholTaxAmount()))
+        
+        self.taxLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getAlcoholAndNonAlcoholTaxAmount()))
         
         self.totalLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getTotalAfterDiscountAndTaxes()))
     }
@@ -130,19 +132,25 @@ extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
             orderTableView.insertRows(at: indexPaths, with: .automatic)
             // calculate bill totals
             
-            let selectedItem = viewModel.orderItems[indexPath.row]
-            let selectedItemCategory = selectedItem.category
-            let selectedItemPrice = selectedItem.price as! Double
+            let selectedItem = viewModel.menuItemPrice(at: indexPath)
+
+            let selectedItemCategory = viewModel.menuCategoryTitle(in: indexPath.section) ?? ""
+            print("--------selectedItemCategory: \(selectedItemCategory)")
+        
+            let selectedItemPrice = viewModel.menuItemPrice(at: indexPath)?.removeFormatAmount() ?? 0.0
             
             touchFramework.addToSubtotal(amount: selectedItemPrice)
+            print("--------selectedItemPrice: \(selectedItemPrice)")
             
             if (selectedItemCategory.contains("Alcohol")) {
-                touchFramework.addToAlcoholSubtotal(amount: selectedItemPrice)
+                touchFramework.calulateAlcoholTaxOnAlcoholSubtotal(amount: selectedItemPrice)
                 print("--------alcoholSubtotal: \(touchFramework.getAlcoholSubtotal())")
                 print("--------tax on Alcohol Items: \(touchFramework.getAlcoholTaxAmount())")
                 
             }
-
+            
+            
+            print("--------subTotal: \(touchFramework.getSubtotal())")
             recalculateAndDisplay()
 
             
@@ -151,6 +159,9 @@ extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
         } else if tableView == orderTableView {
             viewModel.toggleTaxForOrderItem(at: indexPath)
             tableView.reloadRows(at: [indexPath], with: .automatic)
+            
+            
+            
         }
     }
     
