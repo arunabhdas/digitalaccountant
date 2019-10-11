@@ -57,8 +57,9 @@ class RegisterViewController: UIViewController {
     }
     
     func recalculateAndDisplay() {
-        self.subtotalLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getSubtotal()))
         touchFramework.calculateAll()
+        self.subtotalLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getSubtotal()))
+        
         print ("Total totalDiscount : \(touchFramework.getAmountDiscount()) ")
         self.discountsLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getAmountDiscount()))
         
@@ -73,11 +74,6 @@ class RegisterViewController: UIViewController {
         TouchFramework.logToConsole(message: "Test")
     }
     
-    @IBAction func unwindToViewController(segue: UIStoryboardSegue) {
-        let discountVC = segue.source as? DiscountViewController
-        print ("DiscountViewController")
-    
-    }
 }
 
 extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
@@ -137,9 +133,21 @@ extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
             
             if let amount = viewModel.menuItemPrice(at: indexPath)?.removeFormatAmount() {
                 let amountDouble = Double(amount)
-                let subtotalAmountDouble = touchFramework.addToSubtotal(amount: amountDouble)
+                touchFramework.addToSubtotal(amount: amountDouble)
                 
             }
+            let selectedItem = viewModel.orderItems[indexPath.row]
+            
+            let selectedItemCategory = selectedItem.category
+            let selectedItemPrice = selectedItem.price as! Double
+            print("--------selectedItem: \(selectedItem)")
+            print("--------selectedItemPrice: \(selectedItemPrice)")
+            
+            if (selectedItemCategory.contains("Alcohol")) {
+                touchFramework.addToAlcoholSubtotal(amount: selectedItemPrice)
+                print("--------alcoholSubtotal: \(touchFramework.getAlcoholSubtotal())")
+            }
+
             recalculateAndDisplay()
 
             
@@ -168,10 +176,9 @@ extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
             // calculate bill totals
             if let amount = viewModel.menuItemPrice(at: indexPath)?.removeFormatAmount() {
                 let amountDouble = Double(amount)
-                let subtotalAmountDouble = touchFramework.deductFromSubtotal(amount: amountDouble)
-                self.subtotalLabel.text = viewModel.formatter.string(from: NSNumber(value: subtotalAmountDouble))
-                
+                touchFramework.deductFromSubtotal(amount: amountDouble)
             }
+            recalculateAndDisplay()
         }
     }
     

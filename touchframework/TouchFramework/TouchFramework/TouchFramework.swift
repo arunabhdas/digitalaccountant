@@ -10,6 +10,7 @@ import UIKit
 
 open class TouchFramework: NSObject {
     var subtotal: Double = 0.0
+    var alcoholSubtotal: Double = 0.0
     var subtotalAfterDiscount: Double = 0.0
     var totalAfterDiscountAndTaxes: Double = 0.0
     var amountDiscount: Double = 0.0
@@ -19,7 +20,9 @@ open class TouchFramework: NSObject {
     var totalPercentageTax: Double = 0.0
     
     var percentageTax: Double = 0.13
+    var alcoholTaxPercentage: Double = 0.1
     var nonAlcoholTaxAmount: Double = 0.0
+    var alcoholTaxAmount: Double = 0.0
     
     
     
@@ -46,21 +49,28 @@ open class TouchFramework: NSObject {
     }
 
     
-    public func addToSubtotal(amount price: Double) -> Double {
-        self.subtotal = subtotal + price
-        return self.subtotal
+    public func addToSubtotal(amount price: Double) {
+        self.subtotal = self.subtotal + price
     }
     
-    public func deductFromSubtotal(amount price: Double) -> Double {
-        self.subtotal = subtotal - price
-        return self.subtotal
+    public func deductFromSubtotal(amount price: Double) {
+        self.subtotal = self.subtotal - price
+    }
+    
+    public func addToAlcoholSubtotal(amount price: Double) {
+        self.alcoholSubtotal = self.alcoholSubtotal + price
+    }
+    
+    public func deductFromAlcoholSubtotal(amount price: Double) {
+        self.alcoholSubtotal = self.alcoholSubtotal - price
     }
     
     public func calculateAll() {
         self.totalDiscount = self.percentageDiscount * self.subtotal + self.amountDiscount
         self.subtotalAfterDiscount = self.subtotal - self.totalDiscount
         self.nonAlcoholTaxAmount = self.subtotalAfterDiscount * self.percentageTax
-        self.totalAfterDiscountAndTaxes = self.subtotalAfterDiscount + self.nonAlcoholTaxAmount
+        self.alcoholTaxAmount = self.alcoholSubtotal * self.alcoholTaxPercentage
+        self.totalAfterDiscountAndTaxes = self.subtotalAfterDiscount + self.nonAlcoholTaxAmount + self.alcoholTaxAmount
         print ("Total totalDiscount : \(self.totalDiscount) ")
         print ("----Subtotal After Discount : \(self.subtotalAfterDiscount) ")
         
@@ -75,10 +85,17 @@ open class TouchFramework: NSObject {
         self.percentageTax = tax
     }
     
+    public func set(alcoholPercentageTax taxPercentage: Double) {
+        self.alcoholTaxPercentage = taxPercentage
+    }
+    
     public func getSubtotal() -> Double {
         return self.subtotal
     }
     
+    public func getAlcoholSubtotal() -> Double {
+        return self.alcoholSubtotal
+    }
     
     public func getAmountDiscount() -> Double {
         return self.amountDiscount
