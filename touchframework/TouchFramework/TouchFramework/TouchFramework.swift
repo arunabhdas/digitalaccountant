@@ -57,8 +57,11 @@ open class TouchFramework: NSObject {
     
     public func calculateAll() {
         self.totalDiscount = self.percentageDiscount * self.subtotal + self.amountDiscount
+        // Discount is applied first
         self.subtotalAfterDiscount = self.subtotal - self.totalDiscount
+        // Non-alcohol tax amount is applied after discount
         self.nonAlcoholTaxAmount = self.subtotalAfterDiscount * self.percentageTax
+        // Alcohol tax is applied on top
         self.alcoholAndNonAlcoholTaxAmount = self.nonAlcoholTaxAmount + self.alcoholTaxAmount
         self.totalAfterDiscountAndTaxes = self.subtotalAfterDiscount + self.nonAlcoholTaxAmount + self.alcoholTaxAmount
     
