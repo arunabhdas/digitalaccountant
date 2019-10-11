@@ -24,7 +24,7 @@ class RegisterViewController: UIViewController {
     let touchFramework = TouchFramework.sharedInstance
     
     override func viewWillAppear(_ animated: Bool) {
-        print("DiscountVC was dismissed")
+        // TODO-FIXME print("DiscountVC was dismissed")
         recalculateAndDisplay()
     }
     
@@ -60,10 +60,10 @@ class RegisterViewController: UIViewController {
         touchFramework.calculateAll()
         self.subtotalLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getSubtotal()))
         
-        print ("Total totalDiscount : \(touchFramework.getAmountDiscount()) ")
+        // TODO-FIXME print ("TODO-FIXME Total totalDiscount : \(touchFramework.getAmountDiscount()) ")
         self.discountsLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getAmountDiscount()))
         
-        print ("PercentageTax : \(touchFramework.getPercentageTax()) ")
+        // TODO-FIXME print ("PercentageTax : \(touchFramework.getPercentageTax()) ")
         
         self.taxLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getNonAlcoholTaxAmount()))
         
@@ -71,7 +71,7 @@ class RegisterViewController: UIViewController {
     }
     
     func performLoggingOperation() {
-        TouchFramework.logToConsole(message: "Test")
+        // TODO-FIXME TouchFramework.logToConsole(message: "Test")
     }
     
 }
@@ -130,22 +130,17 @@ extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
             orderTableView.insertRows(at: indexPaths, with: .automatic)
             // calculate bill totals
             
-            
-            if let amount = viewModel.menuItemPrice(at: indexPath)?.removeFormatAmount() {
-                let amountDouble = Double(amount)
-                touchFramework.addToSubtotal(amount: amountDouble)
-                
-            }
             let selectedItem = viewModel.orderItems[indexPath.row]
-            
             let selectedItemCategory = selectedItem.category
             let selectedItemPrice = selectedItem.price as! Double
-            print("--------selectedItem: \(selectedItem)")
-            print("--------selectedItemPrice: \(selectedItemPrice)")
+            
+            touchFramework.addToSubtotal(amount: selectedItemPrice)
             
             if (selectedItemCategory.contains("Alcohol")) {
                 touchFramework.addToAlcoholSubtotal(amount: selectedItemPrice)
                 print("--------alcoholSubtotal: \(touchFramework.getAlcoholSubtotal())")
+                print("--------tax on Alcohol Items: \(touchFramework.getAlcoholTaxAmount())")
+                
             }
 
             recalculateAndDisplay()
@@ -183,7 +178,7 @@ extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func discountAddedAction() {
-        print ("Discount was added")
+        // TODO-FIXME print ("Discount was added")
     }
 }
 

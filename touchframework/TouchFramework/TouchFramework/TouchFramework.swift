@@ -110,6 +110,10 @@ open class TouchFramework: NSObject {
         return self.nonAlcoholTaxAmount
     }
     
+    public func getAlcoholTaxAmount() -> Double {
+        return self.alcoholTaxAmount
+    }
+    
     public func getTotalAfterDiscountAndTaxes() -> Double {
         return self.totalAfterDiscountAndTaxes
     }
