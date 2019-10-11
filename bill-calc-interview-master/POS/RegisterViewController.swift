@@ -24,7 +24,6 @@ class RegisterViewController: UIViewController {
     let touchFramework = TouchFramework.sharedInstance
     
     override func viewWillAppear(_ animated: Bool) {
-        // TODO-FIXME print("DiscountVC was dismissed")
         recalculateAndDisplay()
     }
     
@@ -46,7 +45,6 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func showDiscounts() {
-        performLoggingOperation()
         let vc = UINavigationController(rootViewController: DiscountViewController(style: .grouped))
         // vc.modalPresentationStyle = .formSheet
         vc.modalPresentationStyle = .fullScreen
@@ -60,21 +58,13 @@ class RegisterViewController: UIViewController {
         touchFramework.calculateAll()
         self.subtotalLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getSubtotal()))
         
-        // TODO-FIXME print ("TODO-FIXME Total totalDiscount : \(touchFramework.getAmountDiscount()) ")
         self.discountsLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getAmountDiscount()))
-        
-        // TODO-FIXME print ("PercentageTax : \(touchFramework.getPercentageTax()) ")
-        
-        // TODO-FIXME self.taxLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getNonAlcoholTaxAmount()))
         
         self.taxLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getAlcoholAndNonAlcoholTaxAmount()))
         
         self.totalLabel.text = viewModel.formatter.string(from: NSNumber(value: touchFramework.getTotalAfterDiscountAndTaxes()))
     }
     
-    func performLoggingOperation() {
-        // TODO-FIXME TouchFramework.logToConsole(message: "Test")
-    }
     
 }
 
@@ -188,9 +178,6 @@ extension RegisterViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    func discountAddedAction() {
-        // TODO-FIXME print ("Discount was added")
-    }
 }
 
 

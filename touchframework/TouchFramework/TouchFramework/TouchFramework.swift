@@ -60,7 +60,6 @@ open class TouchFramework: NSObject {
         self.subtotalAfterDiscount = self.subtotal - self.totalDiscount
         self.nonAlcoholTaxAmount = self.subtotalAfterDiscount * self.percentageTax
         self.alcoholAndNonAlcoholTaxAmount = self.nonAlcoholTaxAmount + self.alcoholTaxAmount
-        // TODO-FIXME : Don't need this : self.alcoholTaxAmount = self.alcoholSubtotal * self.alcoholTaxPercentage
         self.totalAfterDiscountAndTaxes = self.subtotalAfterDiscount + self.nonAlcoholTaxAmount + self.alcoholTaxAmount
     
         
@@ -115,26 +114,31 @@ open class TouchFramework: NSObject {
     public func addToPercentageDiscount(percentageDiscount percentage: Double) {
         self.percentageDiscount = self.percentageDiscount + percentage
         self.percentageDiscount = self.percentageDiscount.rounded(toPlaces: 2)
-        // TODO-FIXME print ("Total percentageDiscount : \(self.percentageDiscount) ")
 
     }
     
     public func deductFromPercentageDiscount(percentageDiscount percentage: Double) {
         self.percentageDiscount = self.percentageDiscount - percentage
         self.percentageDiscount = self.percentageDiscount.rounded(toPlaces: 2)
-        // TODO-FIXME print ("Total percentageDiscount : \(self.percentageDiscount) ")
     }
     
     public func addToPercentageTax(percentageTax percentage: Double) {
         self.percentageTax = self.percentageTax + percentage
         self.percentageTax = self.percentageTax.rounded(toPlaces: 2)
-        // TODO-print ("PercentageTax : \(self.percentageTax) ")
     }
     
     public func deductFromPercentageTax(percentageTax percentage: Double) {
         self.percentageTax = self.percentageTax - percentage
         self.percentageTax = self.percentageTax.rounded(toPlaces: 2)
-        print ("PercentageTax : \(self.percentageTax) ")
+    }
+    
+    public func addToAlcoholTaxPercentage(alcoholTaxPercentage percentage: Double) {
+        self.alcoholTaxPercentage = self.alcoholTaxPercentage + percentage
+        self.alcoholTaxPercentage = self.alcoholTaxPercentage.rounded(toPlaces: 2)
+    }
+    
+    public func deductFromAlcoholTaxPercentage(alcoholTaxPercentage percentage: Double) {
+        self.alcoholTaxPercentage = self.alcoholTaxPercentage - percentage
     }
     
 }

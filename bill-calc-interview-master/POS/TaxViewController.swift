@@ -65,11 +65,15 @@ extension TaxViewController {
             if !(tax.label.contains("Alcohol")) {
                 print ("\(tax) was enabled")
                 touchFramework.addToPercentageTax(percentageTax: tax.amount)
+            } else {
+                touchFramework.addToAlcoholTaxPercentage(alcoholTaxPercentage: tax.amount)
             }
         } else {
             if !(tax.label.contains("Alcohol")) {
                 print ("\(tax) was disabled")
                 touchFramework.deductFromPercentageTax(percentageTax: tax.amount)
+            } else {
+                touchFramework.deductFromAlcoholTaxPercentage(alcoholTaxPercentage: tax.amount)
             }
         }
             
